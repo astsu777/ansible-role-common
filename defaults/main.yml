@@ -1,0 +1,8 @@
+---
+# Default variables for this role
+
+# Default timezone of the server
+timezone: Europe/Paris
+
+# Hostname of the server
+hostname: devserver.myserver.com

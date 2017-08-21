@@ -1,0 +1,3 @@
+---
+# Execute the common role against all servers
+- include: common.yml

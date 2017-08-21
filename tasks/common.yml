@@ -1,0 +1,48 @@
+---
+- name: (COMMON) Set the correct timezone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: (COMMON) Set the hostname
+  hostname:
+    name: "{{ hostname }}"
+
+- name: (COMMON) Install essential packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - sudo
+    - ntp
+    - net-tools
+    - curl
+    - dnsutils
+    - git
+    - unzip
+    - moreutils
+    - screen
+    - rsync
+    - ncdu
+    - vim
+    - iperf
+    - pwgen
+
+- name: (COMMON) Ensure ntp starts at boot
+  service:
+    name: ntp
+    state: started
+    enabled: yes
+
+- name: (COMMON) Configure logrotate to include custom cron folder
+  lineinfile:
+    path: /etc/logrotate.d/rsyslog
+    insertafter: '^/var/log/messages'
+    line: /var/log/cron/*.log
+
+- name: (COMMON) Configure logrotate to include custom cron folder
+  file:
+    path: /var/log/cron
+    state: directory
+    owner: root
+    group: root
+    mode: 0750
