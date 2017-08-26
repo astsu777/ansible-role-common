@@ -26,6 +26,7 @@
     - vim
     - iperf
     - pwgen
+    - nano
 
 - name: (COMMON) Ensure ntp starts at boot
   service:
