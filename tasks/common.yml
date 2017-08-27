@@ -7,6 +7,15 @@
   hostname:
     name: "{{ hostname }}"
 
+- name: (COMMON) Write the hostname to the hosts file
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127.0.0.1'
+    line: '127.0.0.1 localhost {{ hostname }}'
+    owner: root
+    group: root
+    mode: 0644
+
 - name: (COMMON) Install essential packages
   package:
     name: "{{ item }}"
