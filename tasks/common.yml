@@ -36,6 +36,7 @@
     - iperf
     - pwgen
     - nano
+    - tmux
 
 - name: (COMMON) Ensure ntp starts at boot
   service:
