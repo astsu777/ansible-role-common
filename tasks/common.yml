@@ -1,4 +1,14 @@
 ---
+## Role Variables
+- name: (COMMON) Determine unique package names for Debian OS family
+  set_fact:
+    dns_tools: "dnsutils"
+
+- name: (COMMON) Determine unique package names for Debian OS family
+  set_fact:
+    dns_tools: "bind-utils"
+
+## Actions
 - name: (COMMON) Set the correct timezone
   timezone:
     name: "{{ timezone }}"
@@ -25,7 +35,7 @@
     - ntp
     - net-tools
     - curl
-    - dnsutils
+    - "{{ dns_tools }}"
     - git
     - unzip
     - moreutils
