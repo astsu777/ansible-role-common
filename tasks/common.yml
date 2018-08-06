@@ -3,10 +3,32 @@
 - name: (COMMON) Determine unique package names for Debian OS family
   set_fact:
     dns_tools: "dnsutils"
+  when: ansible_os_family == "Debian"
 
-- name: (COMMON) Determine unique package names for Debian OS family
+- name: (COMMON) Determine unique package names for Red Hat OS family
   set_fact:
     dns_tools: "bind-utils"
+  when: ansible_os_family == "RedHat"
+
+- name: (COMMON) Determine NTP/NTPD service name for Debian OS family
+  set_fact:
+    ntp_daemon: "ntp"
+  when: ansible_os_family == "Debian"
+
+- name: (COMMON) Determine NTP/NTPD name for Red Hat OS family
+  set_fact:
+    ntp_daemon: "ntpd"
+  when: ansible_os_family == "RedHat"
+
+- name: (COMMON) Determine syslog file name for Debian OS family
+  set_fact:
+    syslog_file: "/etc/logrotate.d/rsyslog"
+  when: ansible_os_family == "Debian"
+
+- name: (COMMON) Determine syslog file name for Red Hat OS family
+  set_fact:
+    syslog_file: "/etc/logrotate.d/syslog"
+  when: ansible_os_family == "RedHat"
 
 ## Actions
 - name: (COMMON) Set the correct timezone
@@ -50,19 +72,20 @@
 
 - name: (COMMON) Ensure ntp starts at boot
   service:
-    name: ntp
+    name: "{{ ntp_daemon }}"
     state: started
     enabled: yes
+  tags: debug
 
 - name: (COMMON) Configure logrotate to include custom cron folder
   lineinfile:
-    path: /etc/logrotate.d/rsyslog
+    path: "{{ syslog_file }}"
     insertafter: '^/var/log/messages'
     line: /var/log/cron/*.log
 
 - name: (COMMON) Configure logrotate to include custom cron folder
   file:
-    path: /var/log/cron
+    path: /var/log/cronjobs
     state: directory
     owner: root
     group: root

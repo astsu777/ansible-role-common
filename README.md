@@ -10,7 +10,7 @@ This role perform various operations that need to be done on every Linux system:
   - ntp
   - net-tools
   - curl
-  - dnsutils
+  - dnsutils (or equivalent)
   - git
   - unzip
   - moreutils
@@ -20,9 +20,11 @@ This role perform various operations that need to be done on every Linux system:
   - vim
   - iperf
   - pwgen
+  - nano
+  - tmux
 
 - Configure the NTP service to start at boot
-- Modify logrotate's rsyslog configuration to take care of any log files in /var/log/cron
+- Modify logrotate's rsyslog configuration to take care of any log files in /var/log/cronjobs
 
 Requirements
 ------------
