@@ -75,7 +75,6 @@
     name: "{{ ntp_daemon }}"
     state: started
     enabled: yes
-  tags: debug
 
 - name: (COMMON) Configure logrotate to include custom cron folder
   lineinfile:
