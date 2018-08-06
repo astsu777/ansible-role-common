@@ -1,32 +1,16 @@
 ---
 ## Role Variables
-- name: (COMMON) Determine unique package names for Debian OS family
+- name: (COMMON) Set variables for Debian OS family
   set_fact:
     dns_tools: "dnsutils"
-  when: ansible_os_family == "Debian"
-
-- name: (COMMON) Determine unique package names for Red Hat OS family
-  set_fact:
-    dns_tools: "bind-utils"
-  when: ansible_os_family == "RedHat"
-
-- name: (COMMON) Determine NTP/NTPD service name for Debian OS family
-  set_fact:
     ntp_daemon: "ntp"
-  when: ansible_os_family == "Debian"
-
-- name: (COMMON) Determine NTP/NTPD name for Red Hat OS family
-  set_fact:
-    ntp_daemon: "ntpd"
-  when: ansible_os_family == "RedHat"
-
-- name: (COMMON) Determine syslog file name for Debian OS family
-  set_fact:
     syslog_file: "/etc/logrotate.d/rsyslog"
   when: ansible_os_family == "Debian"
 
-- name: (COMMON) Determine syslog file name for Red Hat OS family
+- name: (COMMON) Set variables for Red Hat OS family
   set_fact:
+    dns_tools: "bind-utils"
+    ntp_daemon: "ntpd"
     syslog_file: "/etc/logrotate.d/syslog"
   when: ansible_os_family == "RedHat"
 
