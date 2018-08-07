@@ -51,8 +51,8 @@
     - vim
     - iperf
     - pwgen
-    - nano
     - tmux
+    - wget
 
 - name: (COMMON) Ensure ntp starts at boot
   service:
