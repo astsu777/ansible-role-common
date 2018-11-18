@@ -14,23 +14,23 @@
     syslog_file: "/etc/logrotate.d/syslog"
   when: ansible_os_family == "RedHat"
 
-## Actions
-- name: (COMMON) Set the correct timezone
-  timezone:
-    name: "{{ timezone }}"
-
-- name: (COMMON) Set the hostname
-  hostname:
-    name: "{{ hostname }}"
-
-- name: (COMMON) Write the hostname to the hosts file
-  lineinfile:
-    path: /etc/hosts
-    regexp: '^127.0.0.1'
-    line: '127.0.0.1 localhost {{ hostname }}'
-    owner: root
-    group: root
-    mode: 0644
+## Actions - DISABLED AS IT BREAKS THE CONNECTION
+#- name: (COMMON) Set the correct timezone
+#  timezone:
+#    name: "{{ timezone }}"
+#
+#- name: (COMMON) Set the hostname
+#  hostname:
+#    name: "{{ hostname }}"
+#
+#- name: (COMMON) Write the hostname to the hosts file
+#  lineinfile:
+#    path: /etc/hosts
+#    regexp: '^127.0.0.1'
+#    line: '127.0.0.1 localhost {{ hostname }}'
+#    owner: root
+#    group: root
+#    mode: 0644
 
 - name: (COMMON) Install essential packages
   package:
