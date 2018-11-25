@@ -19,7 +19,7 @@
   timezone:
     name: "{{ timezone }}"
 
-# BUG
+# BUG FS#5
 #- name: (COMMON) Set the hostname
 #  hostname:
 #    name: "{{ hostname }}"
