@@ -14,11 +14,12 @@
     syslog_file: "/etc/logrotate.d/syslog"
   when: ansible_os_family == "RedHat"
 
-## Actions - DISABLED AS IT BREAKS THE CONNECTION
-#- name: (COMMON) Set the correct timezone
-#  timezone:
-#    name: "{{ timezone }}"
-#
+## Action
+- name: (COMMON) Set the correct timezone
+  timezone:
+    name: "{{ timezone }}"
+
+# BUG
 #- name: (COMMON) Set the hostname
 #  hostname:
 #    name: "{{ hostname }}"
